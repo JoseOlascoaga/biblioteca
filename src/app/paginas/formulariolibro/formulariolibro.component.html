@@ -1,0 +1,72 @@
+
+<app-menu></app-menu>
+<div class="container"><br><br>
+  <h3 class="h3">LIBROS</h3>
+  
+  <div class="row">
+    <div class="col-lg-6">
+      <form [formGroup]="myform"> <br> 
+        <p>
+          <label>Código del libro</label><input type="text" placeholder="Digite el nombre del Libro que desea agregar" class="form-control" formControlName="codlibro" />
+        </p>
+        <p>
+          <label>Nombre</label><input type="text" placeholder="Digite el nombre del Libro que desea agregar" class="form-control" formControlName="nombrelibro" />
+        </p>
+
+        
+        <div class="form-group">
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <label>Seleccionar Codigo Autor</label>
+              <select class="form-select" formControlName="Idautor" placeholder="Selecciona" required>
+                <option *ngFor="let con of lista_autores" value="{{con.Idautor}}">{{con.codautor}} </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <label>Seleccionar Codigo Editorial</label>
+              <select class="form-select" formControlName="Ideditorial" placeholder="Selecciona" required>
+                <option *ngFor="let con of lista_editoriales" value="{{con.Ideditorial}}">{{con.codeditorial}} </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+       
+        <p>
+          <label>Fecha de Lanzamiento</label><input type="datetime" placeholder="Digite la fecha de lanzamiento del libro (Año-mes-día)" class="form-control" formControlName="FechaLanzamiento" />
+        </p>
+        <p><button (click)="altalibro(myform.value)" class="btn btn-primary mx-1">Agregar</button>
+           <button (click)="modificacionlibro(myform.value)" class="btn btn-warning">Editar</button>
+        </p>
+      </form>
+    </div>
+
+    <div class="col-lg-6">
+       <img src="/assets/img/paglibros.jpg" width="500" height="305" class="d-inline-block   align-top" alt="">
+    </div><br><br>
+  </div>
+  <table class="table table-striped table-bordered">
+    <tr>
+      <th>Código del libro</th>
+      <th>Nombre del libro</th>
+      
+      <th>Fecha de Lanzamiento</th>
+      <th class="text-center" colspan="2">Operación</th>
+    </tr>
+     
+    <tr *ngFor="let con of lista_contactos" >
+      <td>{{con.codlibro}}</td>
+      <td>{{con.nombrelibro}}</td>
+      <td>{{con.FechaLanzamiento}}</td>
+      <td><button class="btn btn-outline-dark" (click)="seleccionar(con)">Seleccionar</button></td>
+      <td><button class="btn btn-outline-danger" (click)="bajalibro(con.Idlibro)">Eliminar</button></td>
+    </tr>
+  </table>
+ </div>
+ <br><hr>
+ <app-pie></app-pie>

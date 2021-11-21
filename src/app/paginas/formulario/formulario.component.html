@@ -1,0 +1,51 @@
+
+<app-menu></app-menu>
+<div class="container"><br><br>
+  <h3 class="h3">PRÉSTAMOS</h3>
+  
+  <div class="row">
+    <div class="col-lg-6">
+      <form [formGroup]="myform"> <br>
+        <p>
+          <label>Identificacion</label><input type="text" placeholder="Digite la identificación del cliente" class="form-control" formControlName="identificacion" />
+        </p> 
+        <p>
+          <label>Cliente</label><input type="text" placeholder="Digite el nombre del cliente que solicitó el libro" class="form-control" formControlName="fullname" />
+        </p>
+        <p>
+          <label>Contacto</label><input type="number" placeholder="Digite el numero de contacto del cliente" class="form-control" formControlName="phone" />
+        </p>
+        <p>
+          <label>Correo</label><input type="email"  placeholder="Digite el correo del cliente" class="form-control" formControlName="email" />
+        </p>
+        <p><button (click)="alta(myform.value)" class="btn btn-success mx-1">Agregar</button>
+           <button (click)="modificacion(myform.value)" class="btn btn-primary">Editar</button>
+        </p>
+      </form>
+    </div>
+
+    <div class="col-lg-6">
+       <img src="/assets/img/pagcli.jpg" width="500" height="305" class="d-inline-block   align-top" alt=""><!-- puede colocar una imagen -->
+    </div>
+  </div>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>Identificación (C.C / T.I)</th>
+      <th>Cliente</th>
+      <th>Teléfono</th>
+      <th>Correo</th>
+      <th class="text-center" colspan="2">Operación</th>
+    </tr>
+     
+    <tr *ngFor="let con of lista_contactos" >
+      <td>{{con.identificacion}}</td>
+      <td>{{con.fullname}}</td>
+      <td>{{con.phone}}</td>
+      <td>{{con.email}}</td>
+      <td><button class="btn btn-outline-dark" (click)="seleccionar(con)">Seleccionar</button></td>
+      <td><button class="btn btn-outline-danger" (click)="baja(con.id)">Eliminar</button></td>
+    </tr>
+  </table>
+ </div>
+ <br><hr>
+ <app-pie></app-pie>
